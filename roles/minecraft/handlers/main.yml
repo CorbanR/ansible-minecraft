@@ -1,0 +1,5 @@
+---
+- name: Start Minecraft
+  service: name=minecraft
+           state=started
+           enabled=yes

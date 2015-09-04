@@ -1,0 +1,19 @@
+[Unit]
+Description=Minecraft Server
+
+[Service]
+WorkingDirectory={{ install_location }}
+User=minecraft
+
+ExecStart=/usr/bin/java {{ java_options }}
+
+ExecReload=/bin/kill -HUP $MAINPID; /usr/bin/java {{ java_options }}
+
+ExecStop=/bin/kill -HUP $MAINPID
+RestartSec=10s
+
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target

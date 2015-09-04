@@ -1,0 +1,9 @@
+{{ install_location }}/logs/*.log {
+  daily
+  missingok
+  copytruncate
+  notifempty
+  compress
+  delaycompress
+  rotate 7
+}
