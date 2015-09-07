@@ -1,5 +1,5 @@
 ---
-- name: Start Minecraft
+- name: Restart Minecraft
   service: name=minecraft
-           state=started
+           state=restarted
            enabled=yes
