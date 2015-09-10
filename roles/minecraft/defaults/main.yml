@@ -1,3 +1,12 @@
+---
+agree_to_eula: "false"
+install_location: "/home/minecraft"
+minecraft_version: 1.8.8
+minecraft_url: "https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_version }}/minecraft_server.{{ minecraft_version }}.jar"
+sha256sum: "39aef720dc5309476f56f2e96a516f3dd3041bbbf442cbfd47d63acbd06af31e"
+java_options: "-Xms512M -Xmx512M -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui"
+
+#server.properties
 spawn_protection: 16
 max_tick_time: 60000
 generator_settings: ""
