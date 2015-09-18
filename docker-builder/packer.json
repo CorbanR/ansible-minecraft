@@ -1,0 +1,32 @@
+{
+  "builders":[{
+    "type": "docker",
+    "image": "corbanr/ansible:debian8.2",
+    "export_path": "minecraft.tar"
+  }],
+  "provisioners":[
+    {
+      "type": "ansible-local",
+      "playbook_file": "packer.yml",
+      "role_paths": [
+        "../roles/minecraft"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "rm -rf /tmp/packer-provisioner-ansible-local",
+        "apt-get clean",
+        "rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*"
+      ]
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type": "docker-import",
+      "repository": "minecraft/packer",
+      "tag": "1.8.8"
+    }
+  ]
+}

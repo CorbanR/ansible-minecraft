@@ -3,20 +3,28 @@
   apt: upgrade=full
         update-cache=yes
         cache_valid_time=86400
-  when: update_server is defined
+  when: update_server is defined and docker_provisioned is not defined
 
-- name: Create minecraft user
+- name: Create minecraft user no shell
   user: name=minecraft
         shell=/bin/nologin
         createhome=yes
+  when: docker_provisioned is not defined
 
-- name: Install openjdk7
-  apt: name=openjdk-7-jre
+- name: Create minecraft user with shell(Docker)
+  user: name=minecraft
+        shell=/bin/nologin
+        createhome=yes
+  when: docker_provisioned is defined
+
+- name: Install java
+  apt: name={{ java_version }}
        state=present
 
 - name: Download minecraft.jar
   get_url: url={{ minecraft_url }}
            dest={{ install_location }}/minecraft_server.{{ minecraft_version }}.jar
+           sha256sum={{ minecraft_sha256sum }}
            owner=minecraft
            group=minecraft
            mode=0644
@@ -38,8 +46,15 @@
             owner=minecraft
             group=minecraft
             mode=0644
-  when: white_list_include is defined and white_list == "true"
   notify: Restart Minecraft
+  when: white_list_include is defined and white_list == "true"
+
+- name: Install Docker entrypoint
+  template: src=entrypoint.j2
+            dest={{ install_location }}/entrypoint
+            owner=minecraft
+            group=minecraft
+            mode=0755
 
 - name: Install systemd script
   template: src=minecraft.service.j2
@@ -48,6 +63,7 @@
             group=root
             mode=0644
   notify: Restart Minecraft
+  when: docker_provisioned is not defined
 
 - name: Install logrotate
   template: src=logrotate.j2

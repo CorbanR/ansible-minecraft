@@ -1,0 +1,29 @@
+---
+- hosts: minecraft
+  remote_user: vagrant
+  become: yes
+  vars:
+    docker_provisioned: yes
+    docker_options: "-s aufs"
+    docker_email: "<email>" #Email you use to login to Docker hub
+    docker_username: "<username>" #Username for Docker hub
+    docker_password: "<password>" #Password for Docker hub
+    docker_repository: "<repository>" #Repository that you want to push to
+  roles:
+    - common
+    - packer
+    - docker
+  tasks:
+    - name: Build Docker container with Packer
+      shell: packer build packer.json >> /tmp/packer.log
+             chdir=/vagrant/docker-builder
+
+    - name: Login to Docker hub
+      command: docker login -e {{ docker_email }} -u {{ docker_username }} -p {{ docker_password }}
+
+    - name: Apply Docker meta data
+      shell: docker build -t {{ docker_repository }} . >> /tmp/meta-data.log
+               chdir=/vagrant/docker-builder/build
+
+    - name: Push container to repository
+      shell: docker push {{ docker_repository }} >> /tmp/push.log

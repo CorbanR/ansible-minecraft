@@ -1,21 +1,27 @@
 # ansible-minecraft
-Install Minecraft server on Debian Jessie
+Install Minecraft on Debian Jessie.
+
+- To build a Minecraft Docker container see `docker-builder/README.md`.
+- To deploy a Minecraft Docker container see `docker-deploy/README.md`.
+
+To install Minecraft via Ansible without Docker, continue :).
 
 Requirements
 ------------
-* [Ansible](http://docs.ansible.com/ansible/intro_installation.html)
-* [Vagrant](https://www.vagrantup.com/) If you want to test via Vagrant.
-* A Debian Jessie server (May or may not work for Ubuntu).
+* [Ansible](http://docs.ansible.com/ansible/intro_installation.html).
+* [Vagrant](https://www.vagrantup.com/) (If you want to build the Docker container).
+  * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or [vmware](http://www.vmware.com/).
+* A Debian Jessie server (May work on Ubuntu).
 
-- You will need to add your server's IP to the `inventories` file
+- You will need to add your server's IP to the `inventories` file.
 
 How to run
 ----------
-Example ansible command: `ansible-playbook -i inventories playbook.yml -u <user>`
+Example ansible command: `ansible-playbook -i inventories playbook.yml -u <user>`.
 
 Configurable options
 --------------------
-To see all available options and the defaults see `roles/minecraft/defaults/main.yml`
+To see all available configurable options and their defaults see `roles/minecraft/defaults/main.yml`.
 
 Example Playbook:
 
@@ -29,7 +35,7 @@ Example Playbook:
     install_location: "/home/minecraft"
     minecraft_version: 1.8.8
     minecraft_url: "https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_version }}/minecraft_server.{{ minecraft_version }}.jar"
-    sha256sum: "39aef720dc5309476f56f2e96a516f3dd3041bbbf442cbfd47d63acbd06af31e"
+    minecraft_sha256sum: "39aef720dc5309476f56f2e96a516f3dd3041bbbf442cbfd47d63acbd06af31e"
     java_options: "-Xms2048M -Xmx2048M -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui" #Change the Xms and Xmx values base on the resources of your server.
     white_list: "true"
     white_list_include:
@@ -39,7 +45,6 @@ Example Playbook:
     - minecraft
 
 ```
-
 
 Acknowledgements
 ----------------

@@ -1,0 +1,4 @@
+---
+packer_version: "0.8.6"
+packer_url: "https://dl.bintray.com/mitchellh/packer/packer_{{ packer_version }}_linux_amd64.zip"
+packer_sha256sum: "2f1ca794e51de831ace30792ab0886aca516bf6b407f6027e816ba7ca79703b5"

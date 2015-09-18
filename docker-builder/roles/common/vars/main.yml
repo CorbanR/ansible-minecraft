@@ -1,0 +1,13 @@
+---
+packages:
+  - tar
+  - unzip
+  - iptables
+  - apparmor
+  - git
+  - procps
+  - xz-utils
+  - lxc
+  - aufs-tools
+  - vim
+  - htop
