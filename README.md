@@ -4,7 +4,7 @@ Install Minecraft on Debian Jessie.
 - To build a Minecraft Docker container see `docker-builder/README.md`.
 - To deploy a Minecraft Docker container see `docker-deploy/README.md`.
 
-To install Minecraft via Ansible without Docker, continue :).
+To install Minecraft without Docker, continue :).
 
 Requirements
 ------------

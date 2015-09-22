@@ -5,10 +5,10 @@
   vars:
     docker_provisioned: yes
     docker_options: "-s aufs"
-    docker_email: "<email>" #Email you use to login to Docker hub
-    docker_username: "<username>" #Username for Docker hub
-    docker_password: "<password>" #Password for Docker hub
-    docker_repository: "<repository>" #Repository that you want to push to
+    docker_email: "<email>" #Docker Hub email
+    docker_username: "<username>" #Docker Hub username
+    docker_password: "<password>" #Docker Hub password
+    docker_repository: "<repository>" #Docker Hub repository and optional tag. Example "corbanr/minecraft:1.8.8"
   roles:
     - common
     - packer
