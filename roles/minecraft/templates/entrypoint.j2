@@ -4,5 +4,9 @@
 #
 # Authors: Corban Raun
 # -----------------------------------------------------------------------------
-
-java {{ java_options }}
+if [ -n "$JAVA_XMS" ] && [ -n "$JAVA_XMX" ]
+then
+  java -Xms$JAVA_XMS -Xmx$JAVA_XMX -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui
+else
+  java {{ java_options }}
+fi
