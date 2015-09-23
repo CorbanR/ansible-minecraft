@@ -26,3 +26,13 @@
            state=started
            enabled=yes
   when: docker_provisioned is defined
+
+- name: Install the pip Python package manager
+  apt: name=python-pip
+
+- name: Update to latest version of pip via pip
+  pip: name=pip
+       state=latest
+
+- name: Install the Docker Python API
+  pip: name=docker-py
