@@ -12,7 +12,7 @@ Requirements
 
 Required Variables
 ------------------
-Please update the following variables located in  `ansible-minecraft/docker-builder/vagrant.yml`
+Please update the following variables located in  `vagrant.yml`
 ```
     docker_email: "<email>" #Docker Hub email
     docker_username: "<username>" #Docker Hub username
@@ -23,7 +23,7 @@ Please update the following variables located in  `ansible-minecraft/docker-buil
 
 Optional Variables
 ------------------
-Optional Variables `ansible-minecraft/docker-builder/packer.yml`
+Optional Variables `packer.yml`
 
 ```
     minecraft_version: 1.8.8

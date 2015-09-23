@@ -5,11 +5,11 @@ Deploy a Minecraft Docker container.
 Requirements
 ------------
 * A Debian Jessie server (May work on Ubuntu)
-* Update `ansible-minecraft/docker-deploy/inventory` with your server's IP
+* Update `inventory` with your server's IP
 
 Optional Variables
 ------------------
-* View/Modify `ansible-minecraft/docker-deploy/playbook.yml`
+* View/Modify `playbook.yml`
 ```
     - name: Deploy Minecraft Docker container
       docker:
@@ -25,3 +25,6 @@ Optional Variables
             JAVA_XMS: "512m"
             JAVA_XMX: "512m"
 ```
+How to run
+----------
+`ansible-playbook -i inventories playbook.yml -u <user>`
