@@ -1,5 +1,6 @@
 # docker-builder
 Build a Minecraft Docker container using Packer, and Ansible.
+This was used to build [corbanr/minecraft:1.8.8](https://hub.docker.com/r/corbanr/minecraft/)
 
 Requirements
 ------------
