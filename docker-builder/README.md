@@ -1,6 +1,6 @@
 # docker-builder
 Build a Minecraft Docker container using Packer, and Ansible.
-This was used to build [corbanr/minecraft:1.8.8](https://hub.docker.com/r/corbanr/minecraft/)
+This was used to build [corbanr/minecraft:1.8.9](https://hub.docker.com/r/corbanr/minecraft/)
 
 Requirements
 ------------
@@ -17,7 +17,7 @@ Please update the following variables located in  `vagrant.yml`
     docker_email: "<email>" #Docker Hub email
     docker_username: "<username>" #Docker Hub username
     docker_password: "<password>" #Docker Hub password
-    docker_repository: "<repository>" #Docker hub repository and optional tag. Example "corbanr/minecraft:1.8.8"
+    docker_repository: "<repository>" #Docker hub repository and optional tag. Example "corbanr/minecraft:1.8.9"
 
 ```
 
@@ -26,9 +26,9 @@ Optional Variables
 Optional Variables `packer.yml`
 
 ```
-    minecraft_version: 1.8.8
+    minecraft_version: 1.8.9
     minecraft_url: "https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_version }}/minecraft_server.{{ minecraft_version }}.jar"
-    minecraft_sha256sum: "39aef720dc5309476f56f2e96a516f3dd3041bbbf442cbfd47d63acbd06af31e"
+    minecraft_sha256sum: "c18e4245073aaff580eb7359902f0251436568b1647a9e443a924cdb73fa8312"
     java_options: "-Xms2048M -Xmx2048M -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui"
 
 ```

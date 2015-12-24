@@ -26,7 +26,7 @@
     {
       "type": "docker-import",
       "repository": "minecraft/packer",
-      "tag": "1.8.8"
+      "tag": "1.8.9"
     }
   ]
 }
