@@ -2,4 +2,5 @@
 - name: Install required packages
   apt: name={{ item }}
        state=present
-  with_items: packages
+       update_cache=yes
+  with_items: "{{ packages }}"

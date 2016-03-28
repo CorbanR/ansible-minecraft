@@ -1,7 +1,7 @@
 {
   "builders":[{
     "type": "docker",
-    "image": "corbanr/ansible:debian8.2",
+    "image": "corbanr/ansible:debian",
     "export_path": "minecraft.tar"
   }],
   "provisioners":[
@@ -26,7 +26,7 @@
     {
       "type": "docker-import",
       "repository": "minecraft/packer",
-      "tag": "1.8.9"
+      "tag": "1.9"
     }
   ]
 }

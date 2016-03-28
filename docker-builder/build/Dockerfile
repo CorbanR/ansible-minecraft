@@ -1,4 +1,4 @@
-FROM minecraft/packer:1.8.9
+FROM minecraft/packer:1.9
 
 USER minecraft
 

@@ -1,8 +1,8 @@
 ---
 - name: Update system
   apt: upgrade=full
-        update-cache=yes
-        cache_valid_time=86400
+       update-cache=yes
+       cache_valid_time=86400
   when: update_server is defined and docker_provisioned is not defined
 
 - name: Create minecraft user no shell
@@ -19,6 +19,7 @@
 
 - name: Install java
   apt: name={{ java_version }}
+       update-cache=yes
        state=present
 
 - name: Download minecraft.jar

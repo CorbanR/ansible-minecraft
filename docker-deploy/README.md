@@ -14,7 +14,7 @@ Optional Variables
     - name: Deploy Minecraft Docker container
       docker:
         name: minecraft
-        image: corbanr/minecraft:1.8.9
+        image: corbanr/minecraft:1.9
         state: reloaded
         pull: missing
         restart_policy: always

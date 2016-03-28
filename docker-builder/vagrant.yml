@@ -8,7 +8,7 @@
     docker_email: "<email>" #Docker Hub email
     docker_username: "<username>" #Docker Hub username
     docker_password: "<password>" #Docker Hub password
-    docker_repository: "<repository>" #Docker Hub repository and optional tag. Example "corbanr/minecraft:1.8.9"
+    docker_repository: "<repository>" #Docker Hub repository and optional tag. Example "corbanr/minecraft:1.9"
   roles:
     - common
     - packer
