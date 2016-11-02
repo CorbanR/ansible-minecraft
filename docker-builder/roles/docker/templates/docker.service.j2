@@ -5,6 +5,6 @@ After=network.target
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/docker daemon {{ docker_options }}
+ExecStart=/usr/local/bin/docker daemon {{ docker_options }}
 LimitNOFILE=1048576
 LimitNPROC=1048576

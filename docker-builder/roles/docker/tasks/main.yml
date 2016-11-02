@@ -1,38 +1,49 @@
 ---
 - name: Get and install the Docker binary
-  get_url: url={{ docker_url }}
-           dest=/usr/bin/docker-{{ docker_version }}
-           sha256sum={{ docker_sha256sum }}
-           owner=root
-           group=root
-           mode=0755
+  get_url:
+    url: "{{ docker_url }}"
+    dest: "/usr/local/src/docker-{{ docker_version }}.tgz"
+    sha256sum: "{{ docker_sha256sum }}"
+    owner: root
+    group: root
+    mode: "0755"
 
-- name: Symlink docker-{{ docker_version}} to docker
-  file: src=/usr/bin/docker-{{ docker_version }}
-        dest=/usr/bin/docker
-        force=yes
-        state=link
+- name: Unarchive docker
+  unarchive:
+    src: "/usr/local/src/docker-{{ docker_version }}.tgz"
+    dest: "/usr/local/src"
+    copy: no
+
+- name: Quick and dirty cp
+  shell: "cp /usr/local/src/docker/* /usr/local/bin && touch /usr/local/src/{{ docker_version }}.txt"
+  args:
+    creates: "/usr/local/src/{{ docker_version }}.txt"
 
 - name: Install Docker systemd
-  template: src=docker.service.j2
-            dest=/etc/systemd/system/docker.service
-            owner=root
-            group=root
-            mode=0755
+  template:
+    src: docker.service.j2
+    dest: /etc/systemd/system/docker.service
+    owner: root
+    group: root
+    mode: "0755"
   notify: Restart Docker
 
 - name: Start Docker
-  service: name=docker
-           state=started
-           enabled=yes
+  service:
+    name: docker
+    state: started
+    enabled: yes
   when: docker_provisioned is defined
 
 - name: Install the pip Python package manager
-  apt: name=python-pip
+  apt:
+    name: python-pip
 
 - name: Update to latest version of pip via pip
-  pip: name=pip
-       state=latest
+  pip:
+    name: pip
+    state: latest
 
 - name: Install the Docker Python API
-  pip: name=docker-py
+  pip:
+    name: docker-py

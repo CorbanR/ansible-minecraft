@@ -5,10 +5,10 @@
   vars:
     docker_provisioned: yes
     docker_options: "-s aufs"
-    docker_email: "<email>" #Docker Hub email
-    docker_username: "<username>" #Docker Hub username
+    docker_email: "<your_email>" #Docker Hub email
+    docker_username: "<user_name>" #Docker Hub username
     docker_password: "<password>" #Docker Hub password
-    docker_repository: "<repository>" #Docker Hub repository and optional tag. Example "corbanr/minecraft:1.9"
+    docker_repository: "<repo>" #Docker Hub repository and optional tag. Example "corbanr/minecraft:1.10"
   roles:
     - common
     - packer
@@ -16,14 +16,16 @@
   tasks:
     - name: Build Docker container with Packer
       shell: packer build packer.json >> /tmp/packer.log
-             chdir=/vagrant/docker-builder
+      args:
+        chdir: /vagrant/docker-builder
 
     - name: Login to Docker hub
       command: docker login -e {{ docker_email }} -u {{ docker_username }} -p {{ docker_password }}
 
     - name: Apply Docker meta data
       shell: docker build -t {{ docker_repository }} . >> /tmp/meta-data.log
-               chdir=/vagrant/docker-builder/build
+      args:
+        chdir: /vagrant/docker-builder/build
 
     - name: Push container to repository
       shell: docker push {{ docker_repository }} >> /tmp/push.log

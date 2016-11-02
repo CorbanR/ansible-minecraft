@@ -1,4 +1,4 @@
 ---
-packer_version: "0.10.0"
+packer_version: "0.11.0"
 packer_url: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
-packer_sha256sum: "eadd33bc0f8fa42034059fc1cda5f43ed6f540746e767480f0706ebed49b45e5"
+packer_sha256sum: "318ffffa13763eb6f29f28f572656356dc3dbf8d54c01ffddd1c5e2f08593adb"

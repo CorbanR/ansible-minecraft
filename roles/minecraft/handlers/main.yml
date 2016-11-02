@@ -1,6 +1,7 @@
 ---
 - name: Restart Minecraft
-  service: name=minecraft
-           state=restarted
-           enabled=yes
+  service:
+    name: minecraft
+    state: restarted
+    enabled: yes
   when: docker_provisioned is not defined

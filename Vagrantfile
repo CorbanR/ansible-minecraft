@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   config.vm.provider "vmware_fusion" do |vm, override|
     override.vm.box = "CorbanRaun/jessie64"
-    vm.vmx["memsize"] = "1024"
+    vm.vmx["memsize"] = "2048"
     vm.vmx["numvcpus"] = "2"
   end
   config.vm.define "minecraft" do |rundmc|

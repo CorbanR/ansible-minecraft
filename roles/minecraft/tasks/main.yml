@@ -1,74 +1,88 @@
 ---
+- name: Add backports
+  apt_repository:
+    repo: "deb http://ftp.de.debian.org/debian jessie-backports main"
+    state: present
+
 - name: Update system
-  apt: upgrade=full
-       update-cache=yes
-       cache_valid_time=86400
+  apt:
+    upgrade: full
+    update-cache: yes
+    cache_valid_time: 86400
   when: update_server is defined and docker_provisioned is not defined
 
 - name: Create minecraft user no shell
-  user: name=minecraft
-        shell=/bin/nologin
-        createhome=yes
+  user:
+    name: minecraft
+    shell: /bin/nologin
+    createhome: yes
   when: docker_provisioned is not defined
 
 - name: Create minecraft user with shell(Docker)
-  user: name=minecraft
-        shell=/bin/nologin
-        createhome=yes
+  user:
+    name: minecraft
+    shell: /bin/nologin
+    createhome: yes
   when: docker_provisioned is defined
 
 - name: Install java
-  apt: name={{ java_version }}
-       update-cache=yes
-       state=present
+  apt:
+    name: "{{ java_version }}"
+    state: latest
 
 - name: Download minecraft.jar
-  get_url: url={{ minecraft_url }}
-           dest={{ install_location }}/minecraft_server.{{ minecraft_version }}.jar
-           sha256sum={{ minecraft_sha256sum }}
-           owner=minecraft
-           group=minecraft
-           mode=0644
+  get_url:
+    url: "{{ minecraft_url }}"
+    dest: "{{ install_location }}/minecraft_server.{{ minecraft_version }}.jar"
+    sha256sum: "{{ minecraft_sha256sum }}"
+    owner: minecraft
+    group: minecraft
+    mode: "0644"
 
 - name: Install eula and server.properties
-  template: src={{ item }}.j2
-            dest={{ install_location }}/{{ item }}
-            owner=minecraft
-            group=minecraft
-            mode=0644
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ install_location }}/{{ item }}"
+    owner: minecraft
+    group: minecraft
+    mode: "0644"
   with_items:
     - eula.txt
     - server.properties
   notify: Restart Minecraft
 
 - name: Install whitelist
-  template: src=whitelist.json.j2
-            dest={{ install_location }}/whitelist.json
-            owner=minecraft
-            group=minecraft
-            mode=0644
+  template:
+    src: whitelist.json.j2
+    dest: "{{ install_location }}/whitelist.json"
+    owner: minecraft
+    group: minecraft
+    mode: "0644"
   notify: Restart Minecraft
   when: white_list_include is defined and white_list == "true"
 
 - name: Install Docker entrypoint
-  template: src=entrypoint.j2
-            dest={{ install_location }}/entrypoint
-            owner=minecraft
-            group=minecraft
-            mode=0755
+  template:
+    src: entrypoint.j2
+    dest: "{{ install_location }}/entrypoint"
+    owner: minecraft
+    group: minecraft
+    mode: "0755"
 
 - name: Install systemd script
-  template: src=minecraft.service.j2
-            dest=/etc/systemd/system/minecraft.service
-            owner=root
-            group=root
-            mode=0644
+  template:
+    src: minecraft.service.j2
+    dest: /etc/systemd/system/minecraft.service
+    owner: root
+    group: root
+    mode: "0644"
   notify: Restart Minecraft
   when: docker_provisioned is not defined
 
 - name: Install logrotate
-  template: src=logrotate.j2
-            dest=/etc/logrotate.d/minecraft
-            owner=root
-            group=root
-            mode=0644
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/minecraft
+    owner: root
+    group: root
+    mode: "0644"

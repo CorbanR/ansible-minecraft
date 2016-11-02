@@ -1,13 +1,13 @@
 ---
 packages:
+  - apparmor
+  - aufs-tools
+  - git
+  - htop
+  - iptables
+  - lxc
+  - procps
   - tar
   - unzip
-  - iptables
-  - apparmor
-  - git
-  - procps
-  - xz-utils
-  - lxc
-  - aufs-tools
   - vim
-  - htop
+  - xz-utils

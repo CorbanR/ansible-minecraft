@@ -4,10 +4,5 @@
   vars:
     update_server: yes
     agree_to_eula: "true" #Do you agree to the eula? See https://account.mojang.com/documents/minecraft_eula
-    install_location: "/home/minecraft"
-    minecraft_version: 1.9
-    minecraft_url: "https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_version }}/minecraft_server.{{ minecraft_version }}.jar"
-    minecraft_sha256sum: "38a797f50c71f55202e2135a30302cf3a5c8cb494c6d225b88599542957d3a7d"
-    java_options: "-Xms2048M -Xmx2048M -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui" #Change the Xms and Xmx values base on the resources of your server.
   roles:
     - minecraft

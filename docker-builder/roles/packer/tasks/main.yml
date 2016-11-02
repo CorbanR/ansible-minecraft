@@ -1,15 +1,18 @@
 ---
 - name: Get packer binary
-  get_url: url={{ packer_url }}
-           sha256sum={{ packer_sha256sum }}
-           dest=/usr/local/src/packer_{{ packer_version }}_linux_amd64.zip
+  get_url:
+    url: "{{ packer_url }}"
+    sha256sum: "{{ packer_sha256sum }}"
+    dest: "/usr/local/src/packer_{{ packer_version }}_linux_amd64.zip"
 
 - name: Unzip and install packer
-  unarchive: src=/usr/local/src/packer_{{ packer_version }}_linux_amd64.zip
-             dest=/usr/local/bin
-             copy=no
-             creates=/usr/local/src/packer_{{ packer_version }}.txt
+  unarchive:
+    src: "/usr/local/src/packer_{{ packer_version }}_linux_amd64.zip"
+    dest: "/usr/local/bin"
+    copy: no
+    creates: "/usr/local/src/packer_{{ packer_version }}.txt"
 
 - name: Touch Packer version file
-  command: touch /usr/local/src/packer_{{ packer_version }}.txt
-           creates=/usr/local/src/packer_{{ packer_version }}.txt
+  command: "touch /usr/local/src/packer_{{ packer_version }}.txt"
+  args:
+    creates: "/usr/local/src/packer_{{ packer_version }}.txt"

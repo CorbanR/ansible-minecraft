@@ -1,5 +1,5 @@
 ---
-docker_version: "1.10.3"
-docker_url: "https://get.docker.com/builds/Linux/x86_64/docker-{{ docker_version }}"
-docker_sha256sum: "d0df512afa109006a450f41873634951e19ddabf8c7bd419caeb5a526032d86d"
+docker_version: "1.12.3"
+docker_url: "https://get.docker.com/builds/Linux/x86_64/docker-{{ docker_version }}.tgz"
+docker_sha256sum: "626601deb41d9706ac98da23f673af6c0d4631c4d194a677a9a1a07d7219fa0f"
 docker_options: ""

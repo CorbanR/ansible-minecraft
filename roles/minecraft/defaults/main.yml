@@ -1,11 +1,11 @@
 ---
 agree_to_eula: "false"
 install_location: "/home/minecraft"
-minecraft_version: 1.9
+minecraft_version: 1.10.2
 minecraft_url: "https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_version }}/minecraft_server.{{ minecraft_version }}.jar"
-minecraft_sha256sum: "38a797f50c71f55202e2135a30302cf3a5c8cb494c6d225b88599542957d3a7d"
-java_version: "openjdk-7-jre"
-java_options: "-Xms512M -Xmx512M -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui"
+minecraft_sha256sum: "195f468227c5f9218f3919538b9b16ba34adced67fc7d7b652c508a5e8d07a21"
+java_version: "openjdk-8-jre"
+java_options: "-Xms1024M -Xmx1024M -jar {{ install_location }}/minecraft_server.{{ minecraft_version }}.jar nogui"
 
 #server.properties
 spawn_protection: 16
